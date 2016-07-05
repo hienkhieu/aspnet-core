@@ -47,8 +47,8 @@ namespace web_api
                 options.SingleApiVersion(new Info
                 {
                     Version = "v1",
-                    Title = "Geo Search API",
-                    Description = "A simple api to search using geo location in Elasticsearch",
+                    Title = "Asp.net core web-api",
+                    Description = "A simple web-api using asp.net core 1.0 preview 2",
                     TermsOfService = "None"
                 });
                 options.IncludeXmlComments(pathToDoc);
