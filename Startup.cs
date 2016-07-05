@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.Swagger.Model;
 
-namespace web_api
+namespace aspnet_core
 {
     /// <summary>
     /// Startup
