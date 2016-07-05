@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-namespace web_api.Controllers
+namespace aspnet_core.Controllers
 {
     /// <summary>
     /// Values Controller
