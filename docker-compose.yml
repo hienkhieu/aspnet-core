@@ -1,0 +1,9 @@
+version: '2'
+services:
+    
+    aspnet:
+        build: 
+            context: .
+            dockerfile: service.dockerfile
+        ports: 
+         - "5000:5000"
