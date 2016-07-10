@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace aspnet_core.models
 {
@@ -7,6 +8,12 @@ namespace aspnet_core.models
     /// </summary>
     public class Teacher    
     {
+        /// <summary>
+        /// Id
+        /// </summary>
+        /// <returns></returns>
+        [Key]
+        public int TeacherId { get; set; }
         /// <summary>
         /// First name
         /// </summary>
