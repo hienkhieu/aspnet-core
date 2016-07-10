@@ -33,7 +33,7 @@ namespace aspnet_core.models
         /// Teacher
         /// </summary>
         /// <returns></returns>
-        [ForeignKey("TeacherId")]
+        [ForeignKey("TeacherId"), Required]
         public Teacher Teacher { get; set; }
     }
 }
