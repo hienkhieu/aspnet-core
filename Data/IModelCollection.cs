@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace aspnet_core.models
 {
+    /// <summary>
+    /// IModelCollection
+    /// </summary>
     interface IModelCollection<T> where T : class
     {
         /// <summary>
