@@ -4,6 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Swashbuckle.Swagger.Model;
+using aspnet_core.models;
+using aspnet_core.Data.Ef;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_core
 {
@@ -38,6 +41,12 @@ namespace aspnet_core
         public void ConfigureServices(IServiceCollection services)
         {
             var pathToDoc = Configuration["Swagger:Path"];
+
+             var connection = Configuration["Sandbox:SqliteConnectionString"];
+ 
+            services.AddDbContext<DataContext>(options =>
+                options.UseSqlite(connection)
+            );
             // Add framework services.
             services.AddMvc();
 
@@ -54,6 +63,9 @@ namespace aspnet_core
                 options.IncludeXmlComments(pathToDoc);
                 options.DescribeAllEnumsAsStrings();
             });
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IInstructorCollection, InstructorCollection>();
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
+using aspnet_core.models;
 
-namespace aspnet_core.models
+namespace aspnet_core.Data.Ef
 {
     /// <summary>
     /// UnitOfWork class
