@@ -9,10 +9,10 @@ namespace aspnet_core
     public class DataContext : DbContext
     {
         /// <summary>
-        /// Teachers
+        /// Instructors
         /// </summary>
         /// <returns></returns>
-        public DbSet<Teacher> Teachers {get; set;}
+        public DbSet<Instructor> Instructors {get; set;}
         /// <summary>
         /// Courses
         /// </summary>

@@ -28,12 +28,12 @@ namespace aspnet_core.models
         /// FK teacher id
         /// </summary>
         /// <returns></returns>
-        public int TeacherId { get; set; }
+        public int InstructorId { get; set; }
         /// <summary>
         /// Teacher
         /// </summary>
         /// <returns></returns>
         [ForeignKey("TeacherId"), Required]
-        public Teacher Teacher { get; set; }
+        public Instructor Instructor { get; set; }
     }
 }

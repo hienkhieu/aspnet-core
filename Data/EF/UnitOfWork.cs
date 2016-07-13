@@ -36,6 +36,6 @@ namespace aspnet_core.models
         /// Teacher collection
         /// </summary>
         /// <returns></returns>
-        public TeacherCollection TeacherCollection { get; set; }
+        public InstructorCollection TeacherCollection { get; set; }
     }
 }

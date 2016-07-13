@@ -3,7 +3,7 @@ namespace aspnet_core.models
     /// <summary>
     /// IUnitOfWork
     /// </summary>
-    interface IUnitOfWork
+    public interface IUnitOfWork
     {
         /// <summary>
         /// Complete unit of work

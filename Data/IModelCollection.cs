@@ -1,31 +1,45 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace aspnet_core.models
 {
     /// <summary>
     /// IModelCollection
     /// </summary>
-    interface IModelCollection<T> where T : class
+    public interface IModelCollection<T> where T : class
     {
         /// <summary>
         /// Find items
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> Find(Func<T, bool> predicate);
+        Task<IEnumerable<T>> Find(Func<T, bool> predicate);
 
         /// <summary>
+        /// Get All 
+        /// </summary>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetAll();
+
+        /// <summary>   
         /// add item
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        void Add(T item);
+        Task Add(T item);
+
+        /// <summary>
+        /// Update item
+        /// </summary>
+        /// <param name="item"></param>
+        /// <returns></returns>
+        Task Update(T item);
 
         /// <summary>
         /// remove item
         /// </summary>
         /// <param name="item"></param>
-        void Remove(T item);
+        Task Remove(T item);
 
     }
 

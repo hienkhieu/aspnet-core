@@ -6,14 +6,14 @@ namespace aspnet_core.models
     /// <summary>
     /// Teacher
     /// </summary>
-    public class Teacher    
+    public class Instructor    
     {
         /// <summary>
         /// Id
         /// </summary>
         /// <returns></returns>
         [Key]
-        public int TeacherId { get; set; }
+        public int InstructorId { get; set; }
         /// <summary>
         /// First name
         /// </summary>
