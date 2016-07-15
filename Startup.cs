@@ -69,6 +69,7 @@ namespace aspnet_core
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IInstructorCollection, InstructorCollection>();
+            services.AddScoped<ICourseCollection, CourseCollection>();
         }
 
         /// <summary>

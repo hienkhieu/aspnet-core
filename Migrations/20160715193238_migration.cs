@@ -30,24 +30,23 @@ namespace aspnetcore.Migrations
                     CourseId = table.Column<string>(nullable: false),
                     InstructorId = table.Column<int>(nullable: false),
                     Level = table.Column<int>(nullable: false),
-                    Name = table.Column<string>(nullable: true),
-                    TeacherId = table.Column<int>(nullable: false)
+                    Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Courses", x => x.CourseId);
                     table.ForeignKey(
-                        name: "FK_Courses_Instructors_TeacherId",
-                        column: x => x.TeacherId,
+                        name: "FK_Courses_Instructors_InstructorId",
+                        column: x => x.InstructorId,
                         principalTable: "Instructors",
                         principalColumn: "InstructorId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Courses_TeacherId",
+                name: "IX_Courses_InstructorId",
                 table: "Courses",
-                column: "TeacherId");
+                column: "InstructorId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

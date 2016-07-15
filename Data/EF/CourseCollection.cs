@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using aspnet_core.models;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_core.Data.Ef
 {
@@ -37,7 +38,7 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Course>> Find(Func<Course, bool> predicate)
         {
-            return await Task.Run(() => _context.Courses.Where(predicate).ToList());
+            return await Task.Run(() => _context.Courses.Include(course => course.Instructor).Where(predicate).ToList());
         }
 
         /// <summary>
@@ -46,7 +47,16 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Course>> GetAll()
         {
-            return await Task.Run(() => _context.Courses.ToList());
+            try
+            {
+                return await Task.Run(() => _context.Courses.Include(course => course.Instructor).ToList());
+            }
+            catch (System.Exception e)
+            {
+                
+                throw;
+            }
+            
         }
 
         /// <summary>
@@ -62,19 +72,18 @@ namespace aspnet_core.Data.Ef
         /// <summary>
         /// Update Course
         /// </summary>
-        /// <param name="course"></param>
+        /// <param name="newItem"></param>
         /// <returns></returns>
-        public async Task Update(Course course)
+        public async Task Update(Course newItem)
         {
-            var item = await Task.Run(() => _context.Courses.FirstOrDefault(p => p.CourseId == course.CourseId));
-            if (item != null)
-                UpdateCourse(item, course);
+            var oldItem = await Task.Run(() => _context.Courses.FirstOrDefault(p => p.CourseId == newItem.CourseId));
+            if (oldItem != null)
+                UpdateCourse(newItem, oldItem);
         }
 
         private void UpdateCourse(Course input, Course output)
         {
             output.Name = input.Name;
-            output.Instructor = input.Instructor;
             output.InstructorId = input.InstructorId;
         }
     }

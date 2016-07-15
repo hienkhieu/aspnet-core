@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using aspnet_core.models;
+using Microsoft.EntityFrameworkCore;
 
 namespace aspnet_core.Data.Ef
 {
@@ -38,7 +39,7 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Instructor>> Find(Func<Instructor, bool> predicate)
         {
-            return await Task.Run(() => _context.Instructors.Where(predicate).ToList());
+            return await Task.Run(() => _context.Instructors.Include(i => i.Courses).Where(predicate).ToList());
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Instructor>> GetAll()
         {
-            return await Task.Run(() => _context.Instructors.ToList());
+            return await Task.Run(() => _context.Instructors.Include(i => i.Courses).ToList());
         }
 
         /// <summary>

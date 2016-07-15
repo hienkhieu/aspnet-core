@@ -33,6 +33,6 @@ namespace aspnet_core.models
         /// Courses to be taught
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<Course> Courses { get; set; }     
+        public ICollection<Course> Courses { get; set; }     
     }
 }

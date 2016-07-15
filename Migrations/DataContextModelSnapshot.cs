@@ -25,12 +25,9 @@ namespace aspnetcore.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int?>("TeacherId")
-                        .IsRequired();
-
                     b.HasKey("CourseId");
 
-                    b.HasIndex("TeacherId");
+                    b.HasIndex("InstructorId");
 
                     b.ToTable("Courses");
                 });
@@ -55,7 +52,7 @@ namespace aspnetcore.Migrations
                 {
                     b.HasOne("aspnet_core.models.Instructor", "Instructor")
                         .WithMany("Courses")
-                        .HasForeignKey("TeacherId")
+                        .HasForeignKey("InstructorId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
         }
