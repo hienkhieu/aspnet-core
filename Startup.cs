@@ -45,7 +45,7 @@ namespace aspnet_core
         {
             var pathToDoc = Configuration["Swagger:Path"];
 
-             var connection = Configuration["Sandbox:SqliteConnectionString"];
+             var connection =$"Data Source={_hostingEnvironment.ContentRootPath}/{Configuration["Sandbox:SqliteConnectionString"]}";
  
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlite(connection)
