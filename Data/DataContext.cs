@@ -8,6 +8,13 @@ namespace aspnet_core
     /// </summary>
     public class DataContext : DbContext
     {
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="options):base(options"></param>
+        public DataContext(DbContextOptions options):base(options){}
+
         /// <summary>
         /// Instructors
         /// </summary>

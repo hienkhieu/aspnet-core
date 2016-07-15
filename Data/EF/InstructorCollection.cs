@@ -62,13 +62,13 @@ namespace aspnet_core.Data.Ef
         /// <summary>
         /// Update Instructor
         /// </summary>
-        /// <param name="instructor"></param>
+        /// <param name="newItem"></param>
         /// <returns></returns>
-        public async Task Update(Instructor instructor)
+        public async Task Update(Instructor newItem)
         {
-            var item = await Task.Run(() => _context.Instructors.FirstOrDefault(p => p.InstructorId == instructor.InstructorId));
-            if (item != null)
-                UpdateCourse(item, instructor);
+            var oldItem = await Task.Run(() => _context.Instructors.FirstOrDefault(p => p.InstructorId == newItem.InstructorId));
+            if (oldItem != null)
+                UpdateCourse(newItem, oldItem);
         }
 
         private void UpdateCourse(Instructor input, Instructor output)

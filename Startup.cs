@@ -15,6 +15,8 @@ namespace aspnet_core
     /// </summary>
     public class Startup
     {
+        private readonly IHostingEnvironment _hostingEnvironment;
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -27,6 +29,7 @@ namespace aspnet_core
                 .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
                 .AddEnvironmentVariables();
             Configuration = builder.Build();
+            _hostingEnvironment = env;
         }
         /// <summary>
         /// Configuration
