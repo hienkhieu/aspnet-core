@@ -44,9 +44,10 @@ namespace aspnet_core.Controllers
         [HttpGet("{id}")]
         public async Task<Instructor> Get(int id)
         {
-            var allInstructors = await _instructors.GetAll();
-            return allInstructors.Where(i => i.InstructorId == id).FirstOrDefault();
+           var instructors = await _instructors.Find(i => i.InstructorId == id);
+           return instructors.FirstOrDefault();
         }
+        
 
         /// <summary>
         /// Add instructor

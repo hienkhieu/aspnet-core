@@ -48,7 +48,7 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Instructor>> GetAll()
         {
-            return await Task.Run(() => _context.Instructors.Include(i => i.Courses).ToList());
+            return await Task.Run(() => _context.Instructors.ToList());
         }
 
         /// <summary>

@@ -49,7 +49,7 @@ namespace aspnet_core.Data.Ef
         {
             try
             {
-                return await Task.Run(() => _context.Courses.Include(course => course.Instructor).ToList());
+                return await Task.Run(() => _context.Courses.ToList());
             }
             catch (System.Exception e)
             {
