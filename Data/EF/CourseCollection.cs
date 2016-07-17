@@ -47,16 +47,7 @@ namespace aspnet_core.Data.Ef
         /// <returns></returns>
         public async Task<IEnumerable<Course>> GetAll()
         {
-            try
-            {
-                return await Task.Run(() => _context.Courses.ToList());
-            }
-            catch (System.Exception e)
-            {
-                
-                throw;
-            }
-            
+            return await Task.Run(() => _context.Courses.ToList());
         }
 
         /// <summary>
