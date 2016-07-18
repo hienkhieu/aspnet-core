@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using aspnet_core.Data.Ef;
 using aspnet_core.models;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace aspnet_core.tests
         /// Add Item
         /// </summary>
         [TestMethod]
-        public void AddItem()
+        public async Task AddItem()
         {
             var mockSet = new Mock<DbSet<Instructor>>();
 
@@ -28,7 +29,8 @@ namespace aspnet_core.tests
             var mockInstructorCollection = new InstructorCollection(mockContext.Object);
             var mockUnitOfWork = new UnitOfWork(mockContext.Object);
 
-            mockInstructorCollection.Add(mocInstructor.Object).ConfigureAwait(false);
+            await mockInstructorCollection.Add(mocInstructor.Object);
+            await mockUnitOfWork.Complete();
 
             mockSet.Verify(m => m.Add(It.IsAny<Instructor>()), Times.Once());
             mockContext.Verify(m => m.SaveChanges(), Times.Once());

@@ -8,6 +8,10 @@ namespace aspnet_core
     /// </summary>
     public class DataContext : DbContext
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        public DataContext(){}
 
         /// <summary>
         /// Constructor
@@ -19,11 +23,11 @@ namespace aspnet_core
         /// Instructors
         /// </summary>
         /// <returns></returns>
-        public DbSet<Instructor> Instructors {get; set;}
+        public virtual DbSet<Instructor> Instructors {get; set;}
         /// <summary>
         /// Courses
         /// </summary>
         /// <returns></returns>
-        public DbSet<Course> Courses { get; set; }
+        public virtual DbSet<Course> Courses { get; set; }
     }
 }
