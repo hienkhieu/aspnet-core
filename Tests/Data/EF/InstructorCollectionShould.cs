@@ -33,7 +33,7 @@ namespace aspnet_core.tests
         /// Add Item
         /// </summary>
         [TestMethod]
-        public async Task AddItem()
+        public async Task AddInstructor()
         {
             var mockSet = new Mock<DbSet<Instructor>>();
 
@@ -58,7 +58,7 @@ namespace aspnet_core.tests
         /// </summary>
         /// <returns></returns>
         [TestMethodAttribute]
-        public async Task GetAll()
+        public async Task GetAllInstructors()
         {
             var mockSet = new Mock<DbSet<Instructor>>();
             mockSet.As<IQueryable<Instructor>>().Setup(i => i.Provider).Returns(data.Provider);
@@ -71,11 +71,47 @@ namespace aspnet_core.tests
 
             var mockInstructorCollection = new InstructorCollection(mockContext.Object);
             var instructors = (await mockInstructorCollection.GetAll()).ToList();
-            
+
             Assert.AreEqual(2, instructors.Count());
             Assert.AreEqual("Bao", instructors[1].Firstname);
             Assert.AreEqual("Vu", instructors[1].Lastname);
             Assert.AreEqual(43, instructors[0].Age);
+        }
+
+
+        /// <summary>
+        /// Update
+        /// </summary>
+        /// <returns></returns>
+        [TestMethodAttribute]
+        public async Task UpdateInstructor()
+        {
+            var mockSet = new Mock<DbSet<Instructor>>();
+            mockSet.As<IQueryable<Instructor>>().Setup(i => i.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Instructor>>().Setup(i => i.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Instructor>>().Setup(i => i.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Instructor>>().Setup(i => i.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<DataContext>();
+            mockContext.Setup(c => c.Instructors).Returns(mockSet.Object);
+
+            var mockUnitOfWork = new UnitOfWork(mockContext.Object);
+
+            var mockInstructorCollection = new InstructorCollection(mockContext.Object);
+            var instructors = (await mockInstructorCollection.GetAll()).ToList();
+
+            var instructor = instructors[0];
+
+            instructor.Firstname = "Elyse";
+            instructor.Age = 7;
+
+            await mockUnitOfWork.Complete();
+
+            Assert.AreEqual(2, instructors.Count());
+            Assert.AreEqual("Elyse", instructors[0].Firstname);
+            Assert.AreEqual("Khieu", instructors[0].Lastname);
+            Assert.AreEqual(7, instructors[0].Age);
+            mockContext.Verify(m => m.SaveChangesAsync(default(CancellationToken)), Times.Once());
         }
     }
 }
